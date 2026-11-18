@@ -1,0 +1,110 @@
+.account-card{margin-top:18px;padding:15px;border:1px solid #dce6de;background:#fff;border-radius:9px}.account-heading{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12px}.account-heading small{font-size:10px;color:#90a094}.account-card>p{margin:13px 0 11px;font-size:10px;color:#8a9a8e}.account-usage{display:grid;gap:10px}.account-usage>div{display:grid;grid-template-columns:1fr auto;gap:4px;font-size:10px;color:#7f9185}.account-usage strong{font-size:10px;color:#476e54;font-weight:500}.account-usage small{color:#8fa095}.account-usage progress{grid-column:1/-1;width:100%;height:4px;accent-color:#4e8b64;border:0}.account-usage progress::-webkit-progress-bar{background:#eef3ee;border-radius:4px}.account-usage progress::-webkit-progress-value{background:#73a386;border-radius:4px}.account-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:15px}.account-actions button{border:0;padding:0;background:none;font-size:10px;color:#607e69}.account-actions button:hover{color:#225b3a;text-decoration:underline}.accounts-dialog{width:790px;max-width:94vw}.accounts-dialog h3{font-size:14px}.account-create{padding:20px;background:#f6faf6;border:1px solid #e2ebe2;border-radius:9px;margin-bottom:26px}.account-create>label{margin-top:13px}.account-create .primary{margin-top:18px}.member-card{border:1px solid #e0e9e1;border-radius:9px;padding:18px;margin-top:12px}.member-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px}.member-heading small{font-size:10px;font-weight:400;color:#8b9d90;margin-left:8px}.member-heading label{display:flex;align-items:center;gap:6px;margin:0!important;white-space:nowrap}.member-heading input[type=checkbox]{width:auto!important}.member-card .secondary{margin-top:16px;font-size:11px}.quota-explanation{font-size:11px;line-height:1.9;color:#809187}#password-dialog label{margin-top:16px}@media(max-width:650px){.account-card{grid-column:1/-1;margin:0}.account-usage{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.account-usage>div{display:flex;flex-direction:column}.account-card>p{margin:9px 0}.account-actions{margin-top:12px}.login-card{padding:28px}.login-card .brand{margin-bottom:32px}.member-card{padding:14px}.member-card .budget-fields,.account-create .budget-fields{grid-template-columns:1fr}.accounts-dialog{padding:18px}.member-heading{flex-wrap:wrap}}
+
+/* The sign-in page has one centered column, independent of the workspace grid. */
+body.login-page {
+  display: flex;
+  grid-template-columns: none;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 40px 24px;
+  background:
+    radial-gradient(ellipse at 25% 15%, #e5f0e880, transparent 55%),
+    radial-gradient(ellipse at 85% 85%, #e9eeea80, transparent 50%),
+    #f6f8f5;
+}
+.login-page .login-card {
+  flex: 0 1 460px;
+  width: 100%;
+  max-width: 460px;
+  min-width: 0;
+  padding: 40px;
+  border: 1px solid #dce6df;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 20px 64px #2443300a, 0 2px 8px #24433003;
+}
+.login-card .brand {
+  justify-content: center;
+  margin: 0 0 32px;
+}
+.login-card .brand img { width: 36px; height: 36px; }
+.login-card .brand small { font-size: 10px; }
+.login-card .eyebrow {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #859b8c;
+}
+.login-card h1 {
+  text-align: center;
+  margin: 0 0 10px;
+  font-size: 26px;
+  line-height: 1.5;
+  letter-spacing: -.4px;
+  color: #263f32;
+}
+.login-card .login-intro {
+  text-align: center;
+  color: #8a9b8f;
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 0 0 30px;
+}
+.login-card label { margin: 20px 0 9px; font-size: 12px; }
+.login-card input {
+  min-height: 47px;
+  background: #fbfcfb;
+  border-color: #dce5de;
+  border-radius: 8px;
+  padding: 12px 14px;
+  transition: border-color .15s, background .15s;
+}
+.login-card input:focus { background: #fff; border-color: #88ac99; }
+.login-card .login-success {
+  margin: 0 0 20px;
+  padding: 12px 14px;
+  border: 1px solid #d6e8dc;
+  border-radius: 8px;
+  background: #f1f8f3;
+  color: #38694a;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.login-card input:focus-visible { outline: 3px solid #b6d2c345; outline-offset: 1px; }
+.login-card .primary {
+  margin-top: 28px;
+  width: 100%;
+  min-height: 46px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+.login-card .budget-hint {
+  margin: 28px 0 0;
+  padding-top: 21px;
+  border-top: 1px solid #edf1ed;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.9;
+  color: #94a297;
+}
+@media (max-width: 650px) {
+  body.login-page { padding: 24px 18px; }
+  .login-page .login-card { flex-basis: 420px; padding: 32px 25px; border-radius: 16px; }
+  .login-card h1 { font-size: 23px; }
+  .login-card .brand { margin-bottom: 27px; }
+  .login-card .login-intro { font-size: 12px; margin-bottom: 24px; }
+}
+@media (max-height: 650px) and (min-width: 651px) {
+  body.login-page { padding: 24px; }
+  .login-page .login-card { padding: 28px 40px; }
+  .login-card .brand { margin-bottom: 20px; }
+  .login-card .login-intro { margin-bottom: 20px; }
+}
+
+.settings-intro{font-size:12px;line-height:1.9;color:#7e9486;background:#f2f7f3;border:1px solid #e1ebe2;border-radius:8px;padding:14px;margin:0 0 20px}
+.report-language-label{margin:0;font-size:10px;color:#86998c}.report-language-label select{display:block;margin-top:7px}
+.composer-bottom{flex-wrap:wrap}.translation-controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.translation-controls select{font-size:11px;min-height:32px}.login-card .budget-hint a{font-weight:600;text-decoration:none}.login-card .budget-hint a:hover{text-decoration:underline}
+@media(max-width:650px){.report-language-label{flex:1}.report-toolbar .export-actions{width:100%;align-items:center}.translation-controls{width:100%}}

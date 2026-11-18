@@ -1,0 +1,26 @@
+[Unit]
+Description=DeepResearch research workspace
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=deepresearch
+Group=deepresearch
+WorkingDirectory=/opt/deepresearch
+Environment=PYTHONUNBUFFERED=1
+Environment=LANG=C.UTF-8
+Environment=RESEARCH_CONFIG_FILE=/opt/deepresearch/.data/settings.env
+ExecStart=/opt/deepresearch/.venv/bin/python /opt/deepresearch/server.py --port 8000
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=45
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/deepresearch/.data
+
+[Install]
+WantedBy=multi-user.target

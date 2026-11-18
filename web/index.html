@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f7f6" />
+    <title>深研 · DeepResearch</title>
+    <link rel="stylesheet" href="/app.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <a class="brand" href="/" aria-label="深研首页">
+          <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span><strong>深研</strong><small>DEEPRESEARCH</small></span>
+        </a>
+
+        <button class="new-project" id="new-project"><span class="plus-icon">+</span> 新建研究</button>
+
+        <div class="side-label">工作空间</div>
+        <nav class="primary-nav" aria-label="主导航">
+          <button class="nav-item active" data-view="research"><span class="nav-symbol">◫</span> 研究项目 <span class="nav-count" id="project-count">0</span></button>
+        </nav>
+
+        <div class="side-label recent-label">最近项目</div>
+        <div class="project-list" id="project-list"></div>
+
+        <div class="sidebar-bottom">
+          <div class="local-status"><span class="status-dot"></span><span>本地工作区</span><span class="local-lock">●</span></div>
+          <div class="profile"><div class="avatar">研</div><div><strong>个人研究员</strong><small>数据仅保存在此设备</small></div><button class="more-button" aria-label="更多选项">···</button></div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="breadcrumbs"><span>工作空间</span><span class="crumb-divider">/</span><strong id="breadcrumb-current">研究项目</strong></div>
+          <div class="topbar-actions"><span class="save-state"><span class="status-dot"></span> 自动保存</span><button class="icon-button" id="export-report" title="导出研究报告" aria-label="导出研究报告">⇩</button><button class="avatar small-avatar" aria-label="个人资料">研</button></div>
+        </header>
+
+        <div class="main-scroll" id="main-scroll">
+          <section id="empty-state" class="empty-state" hidden>
+            <div class="empty-mark"><span class="brand-mark large" aria-hidden="true"><span></span><span></span><span></span></span></div>
+            <p class="eyebrow">RESEARCH WORKSPACE</p>
+            <h1>从一个好问题开始。</h1>
+            <p class="empty-copy">把复杂的问题拆成可追踪的研究步骤，整理证据，沉淀成清晰结论。</p>
+            <button class="primary-button" id="empty-create"><span>＋</span> 创建研究项目</button>
+            <div class="empty-note"><span class="status-dot"></span> 私有本地存储 · 无需配置密钥</div>
+          </section>
+
+          <section id="project-view" hidden>
+            <div class="project-heading">
+              <div class="heading-copy">
+                <div class="title-line"><span class="project-kicker">研究项目</span><span class="heading-separator">·</span><span id="project-date" class="muted"></span></div>
+                <h1 id="project-title"></h1>
+                <p class="research-question" id="project-question"></p>
+              </div>
+              <div class="heading-buttons"><button class="secondary-button" id="copy-question">复制问题</button><button class="primary-button compact" id="run-research"><span class="play-icon">▶</span> 开始研究</button></div>
+            </div>
+
+            <div class="summary-strip">
+              <div class="summary-cell"><span class="summary-label">进度</span><strong id="progress-value">0%</strong><div class="progress-track"><span id="progress-bar"></span></div></div>
+              <div class="summary-cell"><span class="summary-label">研究步骤</span><strong><span id="task-count">0</span> <small>项</small></strong></div>
+              <div class="summary-cell"><span class="summary-label">来源</span><strong><span id="source-count">0</span> <small>个</small></strong></div>
+              <div class="summary-cell"><span class="summary-label">发现</span><strong><span id="finding-count">0</span> <small>条</small></strong></div>
+              <div class="summary-cell state-cell"><span class="summary-label">状态</span><span class="status-pill" id="project-status">规划中</span></div>
+            </div>
+
+            <div class="section-tabs" role="tablist" aria-label="研究内容">
+              <button class="section-tab active" data-tab="overview" role="tab">研究流程</button>
+              <button class="section-tab" data-tab="sources" role="tab">来源 <span id="tab-source-count">0</span></button>
+              <button class="section-tab" data-tab="findings" role="tab">研究发现 <span id="tab-finding-count">0</span></button>
+              <button class="section-tab" data-tab="report" role="tab">报告预览</button>
+            </div>
+
+            <div id="tab-overview" class="tab-panel">
+              <div class="content-grid">
+                <section class="workflow-section">
+                  <div class="section-heading"><div><h2>研究流程</h2><p>按阶段推进，随时记录你找到的证据。</p></div><button class="text-button" id="reset-tasks" title="重置所有步骤">↻ <span>重置</span></button></div>
+                  <div id="task-groups" class="task-groups"></div>
+                  <div class="workflow-footnote"><span class="info-icon">i</span><span>当前研究计划是基于问题生成的工作草案，来源和结论需要你逐项核实。</span></div>
+                </section>
+                <aside class="right-column">
+                  <section class="side-panel objective-panel"><div class="panel-heading"><h3>研究目标</h3><button id="edit-objective" class="text-button">编辑</button></div><p id="objective-text" class="objective-text"></p></section>
+                  <section class="side-panel latest-panel"><div class="panel-heading"><h3>最近添加</h3><button class="text-button" data-open-tab="sources">查看全部 <span>→</span></button></div><div id="latest-items" class="latest-items"></div></section>
+                  <button class="add-source-cta" data-open-tab="sources"><span class="source-add-icon">＋</span><span><strong>添加研究来源</strong><small>链接、报告或论文</small></span><span class="cta-arrow">→</span></button>
+                </aside>
+              </div>
+            </div>
+            <div id="tab-sources" class="tab-panel" hidden></div>
+            <div id="tab-findings" class="tab-panel" hidden></div>
+            <div id="tab-report" class="tab-panel" hidden></div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modal-backdrop" hidden>
+      <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-header"><div><span class="modal-eyebrow" id="modal-eyebrow">新建项目</span><h2 id="modal-title">开始一项研究</h2></div><button class="icon-button close-button" id="close-modal" aria-label="关闭">×</button></div>
+        <form id="create-form">
+          <label for="question-input">你想研究什么？ <span class="required">*</span></label>
+          <textarea id="question-input" rows="3" maxlength="500" required placeholder="例如：生成式 AI 如何影响知识工作者的生产力？"></textarea>
+          <div class="field-hint">描述一个具体问题，之后可以继续调整研究范围。</div>
+          <label for="title-input">项目名称</label>
+          <input id="title-input" maxlength="72" placeholder="默认使用你的研究问题" />
+          <label for="objective-input">研究目标 <span class="optional">可选</span></label>
+          <textarea id="objective-input" rows="2" maxlength="300" placeholder="你希望这项研究最终回答什么？"></textarea>
+          <div id="form-error" class="form-error" role="alert"></div>
+          <div class="modal-footer"><button type="button" class="secondary-button" id="cancel-modal">取消</button><button type="submit" class="primary-button">创建研究 <span>→</span></button></div>
+        </form>
+      </section>
+    </div>
+
+    <div class="toast" id="toast" role="status"></div>
+    <script src="/app.js" defer></script>
+  </body>
+</html>

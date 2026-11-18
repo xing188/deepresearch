@@ -1,0 +1,10 @@
+.venv/
+.env
+.data/
+.setup/
+outputs/
+__pycache__/
+*.pyc
+*.log
+target/
+target-*.png
